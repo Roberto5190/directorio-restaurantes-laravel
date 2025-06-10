@@ -17,7 +17,7 @@ return new class extends Migration
 	    $table->bigIncrements('id'); //PK autoincremental
 	    $table->string('name', 100); //name: nombre comercial, requerido, max 100 caracteres
             $table->string('address'); //address: direccion fisica, requerido
-	    $table->int('phone', 20)->nullable(); //phone: telefono de contacto, opcional, max 20 digitos 
+	    $table->string('phone', 20)->nullable(); //phone: telefono de contacto, opcional, max 20 digitos 
 	    
 	    //foreign: user_id -> users.id, cascade on delete
 	    $table->foreignId('user_id')

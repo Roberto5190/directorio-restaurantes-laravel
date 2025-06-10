@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id();
+	    //Tabla de categorias de restaurantes
+	    $table->bigIncrements('id'); //PK autoincremental
+	    $table->string('name', 100)->unique(); //name: nombre visible, único para no repetir categorias
+	    $table->string('slug', 100)->nullable()->unique(); //slug: URL amigable
+            
             $table->timestamps();
         });
     }

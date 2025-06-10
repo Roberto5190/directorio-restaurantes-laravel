@@ -12,7 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('favorites', function (Blueprint $table) {
-            $table->id();
+	    // Pivote n:n de usuarios y restaurantes marcados como favoritos
+	    $table->foreignId('user_id') //FK user_id -> users.id
+		  ->constrained()
+	          ->cascadeOnDelete();
+	    
+	    $table->foreignId('restaurant_id')
+		  ->constrained()
+		  ->cascadeOnDelete();
+	    
+	    $table->primary(['user_id', 'restaurant_id']); //Clave primaria compuesta evita duplicados
+
             $table->timestamps();
         });
     }
