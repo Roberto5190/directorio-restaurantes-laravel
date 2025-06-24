@@ -12,7 +12,7 @@ class UpdateRestaurantRequest extends FormRequest
     public function authorize(): bool
     {
         // El controlador ya llama $this->authorize('update', $restaurant)
-        return true;
+        return $this->user()->can('update', $this->route('restaurant'));
     }
 
     /**
