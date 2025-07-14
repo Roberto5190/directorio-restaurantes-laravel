@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class RestaurantController extends Controller
 {
-     use AuthorizesRequests;
+    use AuthorizesRequests;
 
     /**
      * Display a listing of restaurants (public endpoint).
@@ -80,7 +80,8 @@ class RestaurantController extends Controller
      */
     public function update(UpdateRestaurantRequest $request, Restaurant $restaurant): JsonResponse
     {
-        $this->authorize('update', $restaurant);  // Policy check (owner/admin)
+        // Lanza 403 si no es el dueño
+        $this->authorize('update', $restaurant); 
 
         $data = $request->validated();
         $restaurant->update($data);

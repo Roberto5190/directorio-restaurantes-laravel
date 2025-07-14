@@ -11,7 +11,10 @@ class UpdateRestaurantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // El controlador ya llama $this->authorize('update', $restaurant)
+        // Asume que tu ruta usa el {restaurant} model binding
+        $restaurant = $this->route('restaurant');
+
+        // Esto llama a RestaurantPolicy::update($user, $restaurant)
         return $this->user()->can('update', $this->route('restaurant'));
     }
 
